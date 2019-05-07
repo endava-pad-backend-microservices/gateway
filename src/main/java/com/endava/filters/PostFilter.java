@@ -1,6 +1,7 @@
 package com.endava.filters;
 
 import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.exception.ZuulException;
 
 public class PostFilter extends ZuulFilter{
 	@Override
@@ -12,16 +13,16 @@ public class PostFilter extends ZuulFilter{
 	  public int filterOrder() {
 	    return 1;
 	  }
+
+	public boolean shouldFilter() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Object run() throws ZuulException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	 
-	  @Override
-	  public boolean shouldFilter() {
-	    return true;
-	  }
-	 
-	  @Override
-	  public Object run() {
-	   System.out.println("Inside Response Filter");
-	 
-	    return null;
-	  }
+
 }

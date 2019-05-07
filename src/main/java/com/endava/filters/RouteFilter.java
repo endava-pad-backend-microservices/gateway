@@ -1,6 +1,7 @@
 package com.endava.filters;
 
 import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.exception.ZuulException;
 
 public class RouteFilter extends ZuulFilter {
 	@Override
@@ -13,14 +14,14 @@ public class RouteFilter extends ZuulFilter {
 		return 1;
 	}
 
-	@Override
 	public boolean shouldFilter() {
-		return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	@Override
-	public Object run() {
-		System.out.println("Inside Route Filter");
+	public Object run() throws ZuulException {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 }
