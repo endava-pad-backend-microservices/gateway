@@ -50,6 +50,10 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+		</dependency>
 		
 		
 <!-- Use Undertow in Spring Boot +2.x.x instead of Tomcat because Java 9+ doesn't support the f***** cat -->
