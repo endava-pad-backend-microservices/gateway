@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.endava.bean.Redirect;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
@@ -65,7 +64,6 @@ public class PreFilter extends ZuulFilter {
 
 			String URI = request.getRequestURI();
 
-			Redirect red = new Redirect();
 			JSONObject data = new JSONObject();
 			data.put("token", token);
 			data.put("url", URI);
