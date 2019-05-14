@@ -1,6 +1,6 @@
 FROM maven:3.6.1-jdk-12 AS builder
 COPY ./ .
-CMD mvn clean package
+RUN mvn clean package
 
 FROM openjdk:12 as Target
 COPY --from=builder target/gateway-1.0.0.jar gateway.jar 
