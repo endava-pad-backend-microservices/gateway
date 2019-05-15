@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-			<version>2.0.6.RELEASE</version>
+		<version>2.0.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -39,24 +39,22 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 		</dependency>
-		
-		
-<!-- Use Undertow in Spring Boot +2.x.x instead of Tomcat because Java 9+ doesn't support the f***** cat -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -72,8 +70,8 @@
 			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
 
-<!-- Libraries for Undertow -->
-<!-- START -->
+		<!-- Libraries for Undertow -->
+		<!-- START -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
@@ -98,10 +96,9 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 
-	<!-- END Libraries for Undertow -->
-	
-	
-	<dependency>
+		<!-- END Libraries for Undertow -->
+
+		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.6.1</version>
@@ -114,8 +111,6 @@
 			<version>2.6.1</version>
 			<scope>compile</scope>
 		</dependency>
-
-
 
 	</dependencies>
 
@@ -137,15 +132,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-			
-			
+
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -168,9 +163,9 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			
-			
+
+
+
 		</plugins>
 	</build>
 
