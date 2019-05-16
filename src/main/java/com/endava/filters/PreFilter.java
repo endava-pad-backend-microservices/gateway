@@ -65,7 +65,7 @@ public class PreFilter extends ZuulFilter {
 			String URI = request.getRequestURI();
 
 			JSONObject data = new JSONObject();
-			data.put("token", token);
+			data.put("token", token); 
 			data.put("url", URI);
 
 			HttpEntity<JSONObject> req = new HttpEntity<JSONObject>(data, headers);

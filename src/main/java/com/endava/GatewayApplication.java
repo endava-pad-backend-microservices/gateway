@@ -17,9 +17,12 @@ import com.endava.filters.PostFilter;
 import com.endava.filters.PreFilter;
 import com.endava.filters.RouteFilter;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
 @EnableZuulProxy
 @EnableDiscoveryClient
+@EnableSwagger2
 public class GatewayApplication {
 
 	public static void main(String[] args) {
