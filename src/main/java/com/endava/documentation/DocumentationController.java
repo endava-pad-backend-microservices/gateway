@@ -1,9 +1,11 @@
 package com.endava.documentation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -23,19 +25,27 @@ public class DocumentationController implements SwaggerResourcesProvider {
 
 	@Autowired
 	private EurekaClient eureka;
-
+	
+	@Value("#{'${gateway.exclude-swagger-services}'.split(',')}")
+	private String[] excludes;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List get() {
 		List resources = new ArrayList<>();
 		eureka.getApplications().getRegisteredApplications().stream()
-				.filter(i -> !i.getName().toLowerCase().equals(SecurityConstants.GATEWAY_NAME))
+				.filter(i -> !isPresent(excludes,i.getName()))
 				.forEach(i -> {
 					resources.add(swaggerResource(i.getName().toLowerCase(), SecurityConstants.ZUUL_PREFIX
 							+ i.getName().toLowerCase() + SecurityConstants.ENDPOINT_SWAGGER,
 							SecurityConstants.VERSION_SWAGGER));
 				});
 		return resources;
+	}
+	public static<T> boolean isPresent(T[] a, T target)
+	{
+		return Arrays.stream(a)
+					.anyMatch(x -> target.equals(x.toString()));
 	}
 
 	private SwaggerResource swaggerResource(String name, String location, String version) {
