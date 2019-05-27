@@ -1,7 +1,12 @@
 
 #cloud config for gateway
-spring:  cloud:    config:      uri:      - http://localhost:8086/
+spring:
+  cloud:
+    config:
+      uri:
+      - http://localhost:8086/
       name: dev
       profile: dev
       label: configuration
-  application:    name: configuration  
+  application:
+    name: configuration
