@@ -9,4 +9,4 @@ spring:
       profile: dev
       label: configuration
   application:
-    name: configuration
+    name: configuration 
