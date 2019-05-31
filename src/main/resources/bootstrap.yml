@@ -1,10 +1,9 @@
-
 #cloud config for gateway
 spring:
   cloud:
     config:
       uri:
-      - http://localhost:8086/
+      - http://${CONFIG_URL}:8086/
       name: dev
       profile: dev
       label: configuration

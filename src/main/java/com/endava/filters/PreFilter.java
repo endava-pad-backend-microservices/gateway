@@ -76,6 +76,7 @@ public class PreFilter extends ZuulFilter {
 				throw new ZuulException("Access forbiden", 500, "Invalid token");
 			}
 		}
+		
 
 		System.out.println(
 				"Request Method : " + request.getMethod() + " Request URL : " + request.getRequestURL().toString());
