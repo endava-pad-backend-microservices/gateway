@@ -3,7 +3,7 @@ spring:
   cloud:
     config:
       uri:
-      - http://${CONFIG_URL}:8086/
+      - http://${CONFIG_URL}:${CONFIG_PORT}/
       name: dev
       profile: dev
       label: configuration
