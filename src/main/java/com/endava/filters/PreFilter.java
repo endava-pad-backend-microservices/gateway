@@ -5,6 +5,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.endava.bean.SecurityConstants;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
+import com.netflix.zuul.exception.ZuulException;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -12,13 +20,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
-import com.netflix.discovery.shared.Application;
-import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
-import com.netflix.zuul.exception.ZuulException;
 
 public class PreFilter extends ZuulFilter {
 
@@ -45,17 +46,22 @@ public class PreFilter extends ZuulFilter {
 
 	@Override
 	public Object run() throws ZuulException {
+		checkToken();
+		return null;
+	}
+
+	private void checkToken() throws ZuulException {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 
-		String token = request.getHeader("Authorization");
+		String token = request.getHeader(SecurityConstants.AUTHORIZATION_HEADER);
 
 		if (token != null) {
-			Application userApp = eurekaClient.getApplication("AUTH");
+			Application userApp = eurekaClient.getApplication(SecurityConstants.AUTH_NAME);
 			InstanceInfo instanceInfo = userApp.getInstances().get(0);
 
-			List<String> ms = Arrays.asList("http://", String.valueOf(instanceInfo.getIPAddr()), ":",
-					String.valueOf(instanceInfo.getPort()), "/checkToken");
+			List<String> ms = Arrays.asList(SecurityConstants.PROTOCOL, String.valueOf(instanceInfo.getIPAddr()), ":",
+					String.valueOf(instanceInfo.getPort()), SecurityConstants.CHECKTOKEN_ENDPOINT);
 
 			String url = String.join("", ms);
 
@@ -65,8 +71,8 @@ public class PreFilter extends ZuulFilter {
 			String URI = request.getRequestURI();
 
 			JSONObject data = new JSONObject();
-			data.put("token", token); 
-			data.put("url", URI);
+			data.put(SecurityConstants.TOKEN_HEADER, token);
+			data.put(SecurityConstants.URL_HEADER, URI);
 
 			HttpEntity<JSONObject> req = new HttpEntity<JSONObject>(data, headers);
 
@@ -76,11 +82,5 @@ public class PreFilter extends ZuulFilter {
 				throw new ZuulException("Access forbiden", 500, "Invalid token");
 			}
 		}
-		
-
-		System.out.println(
-				"Request Method : " + request.getMethod() + " Request URL : " + request.getRequestURL().toString());
-		return null;
 	}
-
 }
