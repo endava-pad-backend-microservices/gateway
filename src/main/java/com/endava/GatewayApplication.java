@@ -1,5 +1,10 @@
 package com.endava;
 
+import com.endava.filters.ErrorFilter;
+import com.endava.filters.PostFilter;
+import com.endava.filters.PreFilter;
+import com.endava.filters.RouteFilter;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,11 +18,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.client.RestTemplate;
 
-import com.endava.filters.ErrorFilter;
-import com.endava.filters.PostFilter;
-import com.endava.filters.PreFilter;
-import com.endava.filters.RouteFilter;
-
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
@@ -26,7 +26,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @RefreshScope
 public class GatewayApplication {
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
