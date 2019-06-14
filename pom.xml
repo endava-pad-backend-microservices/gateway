@@ -96,8 +96,6 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 
-		<!-- END Libraries for Undertow -->
-
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -126,6 +124,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -7,5 +7,15 @@ spring:
       name: dev
       profile: dev
       label: configuration
+  zipkin:
+    base-url: http://${TRACING_URL}:${TRACING_PORT}
+    locator:
+      discovery:
+        enabled: true
+    enabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
   application:
     name: configuration 
+
