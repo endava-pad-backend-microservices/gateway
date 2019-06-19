@@ -13,9 +13,6 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.client.RestTemplate;
 
 import brave.sampler.Sampler;
@@ -30,14 +27,6 @@ public class GatewayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
-	}
-
-	@EnableWebSecurity
-	static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			http.csrf().disable();
-		}
 	}
 
 	@Bean
@@ -73,4 +62,5 @@ public class GatewayApplication {
 	public Sampler defaultSampler() {
 		return Sampler.ALWAYS_SAMPLE;
 	}
+
 }
