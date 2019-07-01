@@ -1,0 +1,25 @@
+language: java
+
+jdk:
+  - openjdk12
+
+services:
+  - docker
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.m2
+
+before_script:
+  - export CODACY_PROJECT_TOKEN=f903d161fcea4d178809e968c4d99b53
+
+# Commenting this out so it can enabled later when we have tests.
+#  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.3/codacy-coverage-reporter-4.0.3-assembly.jar
+#
+#after_success:
+#  - gradle jacocoTestReport
+#  - java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r build/testCoverageReport/test/jacocoTestReport.xml

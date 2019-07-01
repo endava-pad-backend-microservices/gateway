@@ -1,5 +1,6 @@
 # Authentication Service
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/aeb5659b2e2448d887489a2c113b13f2)](https://www.codacy.com/app/Microservices/gateway?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=endava-pad-backend-microservices/gateway&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/endava-pad-backend-microservices/gateway.svg?branch=master)](https://travis-ci.org/endava-pad-backend-microservices/gateway)
 
 This is a gateway service for the rest of the services to handle and validate traffic.
 
