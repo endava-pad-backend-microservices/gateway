@@ -10,13 +10,16 @@ COPY --from=builder /build/target/gateway-1.0.0.jar gateway.jar
 
 ENV server.url=pad-b-registry \
     CONFIG_URL=pad-b-config \
-    CONFIG_PORT=8086
+    CONFIG_PORT=8086 \ 
+    TRACING_URL=pad-b-tracing \ 
+    TRACING_PORT=8090
 
 CMD wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \ 
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \ 
     && dockerize -wait tcp://$EUREKA_URL:8761 -timeout 60m yarn start \ 
-    && dockerize -wait tcp://$CONFIG_URL:$CONFIG_PORT -timeout 60m yarn start
+    && dockerize -wait tcp://$CONFIG_URL:$CONFIG_PORT -timeout 60m yarn start \ 
+    && dockerize -wait tcp://$TRACING_URL:$TRACING_PORT -timeout 60m yarn start
 
 ENTRYPOINT ["java","-jar","gateway.jar"]
 

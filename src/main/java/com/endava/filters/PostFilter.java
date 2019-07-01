@@ -40,6 +40,7 @@ public class PostFilter extends ZuulFilter {
 	@Value("#{'${gateway.audit_unsave_endpoints}'.split(',')}")
 	private String[] audit_unsave_endpoints;
 
+
 	@Override
 	public String filterType() {
 		return "post";
@@ -58,7 +59,6 @@ public class PostFilter extends ZuulFilter {
 	@Override
 	public Object run() throws ZuulException {
 		auditCalls();
-
 		return null;
 	}
 
